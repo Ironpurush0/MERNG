@@ -8,22 +8,20 @@ const Home = () => {
   const { loading, data } = useQuery(FETCH_POSTS_QUERY);
 
   return (
-    <Container>
-      <Grid columns={2}>
-        <Grid.Row stretched>
-          {loading ? (
-            <h1>loading posts...</h1>
-          ) : (
-            data.getPosts &&
-            data.getPosts.map((post) => (
-              <Grid.Column key={post.id}>
-                <Post post={post} />
-              </Grid.Column>
-            ))
-          )}
-        </Grid.Row>
-      </Grid>
-    </Container>
+    <Grid columns={1}>
+      <Grid.Row stretched>
+        {loading ? (
+          <h1>loading posts...</h1>
+        ) : (
+          data.getPosts &&
+          data.getPosts.map((post) => (
+            <Grid.Column key={post.id}>
+              <Post post={post} />
+            </Grid.Column>
+          ))
+        )}
+      </Grid.Row>
+    </Grid>
   );
 };
 

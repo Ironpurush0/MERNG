@@ -1,0 +1,51 @@
+.post {
+  display: flex;
+  align-items: flex-start;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 10px;
+}
+
+.post__body {
+  flex: 1;
+  padding: 10px;
+}
+
+.post__body > img {
+  border-radius: 20px;
+}
+
+.post__footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  border: 1px solid black;
+}
+
+.post__headerDescription {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.post__headerText > h3 {
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.post__badge {
+  font-size: 14px !important;
+  color: blue;
+}
+
+.post__headerSpecial {
+  font-weight: 600;
+  font-size: 20px;
+  color: black;
+  margin-bottom: 5px;
+}
+
+.post__avatar {
+  padding: 20px;
+}
