@@ -15,52 +15,56 @@ const Post = ({
   post: { body, createdAt, id, username, likesCount, commentCount, likes },
 }) => {
   return (
-    <Item.Group relaxed>
-      <Item>
-        <Item.Image
-          src="https://react.semantic-ui.com/images/avatar/large/steve.jpg"
-          avatar
-          size="tiny"
-        />
+    <div className="ui container">
+      <Item.Group relaxed>
+        <Item>
+          <Item.Image
+            src="https://react.semantic-ui.com/images/avatar/large/steve.jpg"
+            avatar
+            size="tiny"
+          />
 
-        <Item.Content>
-          <Item.Header as="a">{username}</Item.Header>
-          <Item.Meta>
-            <span className="cinema">{moment(createdAt).fromNow()}</span>
-          </Item.Meta>
-          <Item.Description>{body}</Item.Description>
-          <Item.Extra>
-            <div>
-              <Button
-                compact
-                color="red"
-                size="tiny"
-                icon="heart"
-                label={{
-                  basic: true,
-                  color: "red",
-                  pointing: "left",
-                  content: likesCount,
-                }}
-              />
-              <Button
-                size="tiny"
-                color="blue"
-                content="Comments"
-                icon="comment"
-                label={{
-                  as: "a",
-                  basic: true,
-                  color: "blue",
-                  pointing: "left",
-                  content: "2,048",
-                }}
-              />
-            </div>
-          </Item.Extra>
-        </Item.Content>
-      </Item>
-    </Item.Group>
+          <Item.Content>
+            <Item.Header as="a">{username}</Item.Header>
+            <Item.Meta>
+              <span style={{ marginBottom: 10 }}>
+                {moment(createdAt).fromNow()}
+              </span>
+            </Item.Meta>
+            <Item.Description>{body}</Item.Description>
+            <Item.Extra>
+              <div>
+                <Button
+                  compact
+                  color="red"
+                  size="tiny"
+                  icon="heart"
+                  label={{
+                    basic: true,
+                    color: "red",
+                    pointing: "left",
+                    content: likesCount,
+                  }}
+                />
+                <Button
+                  size="tiny"
+                  color="blue"
+                  content="Comments"
+                  icon="comment"
+                  label={{
+                    as: "a",
+                    basic: true,
+                    color: "blue",
+                    pointing: "left",
+                    content: "2,048",
+                  }}
+                />
+              </div>
+            </Item.Extra>
+          </Item.Content>
+        </Item>
+      </Item.Group>
+    </div>
     // <div className="post">
     //   <div className="post__avatar">
     //     <Avatar
