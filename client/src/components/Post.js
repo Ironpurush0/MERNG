@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Avatar } from "@material-ui/core";
 // import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
 // import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
@@ -8,16 +8,21 @@ import { Avatar } from "@material-ui/core";
 import moment from "moment";
 import { Item, Icon, Label, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/auth";
+import LikeButton from "./LikeButton";
+import DeleteButton from "./DeleteButton";
 
 import "./Post.css";
 
 const Post = ({
   post: { body, createdAt, id, username, likesCount, commentCount, likes },
 }) => {
+  const { user } = useContext(AuthContext);
+
   return (
     <div className="ui container">
       <Item.Group relaxed>
-        <Item>
+        <Item as={Link} to={`/posts/${id}`}>
           <Item.Image
             src="https://react.semantic-ui.com/images/avatar/large/steve.jpg"
             avatar
@@ -25,7 +30,7 @@ const Post = ({
           />
 
           <Item.Content>
-            <Item.Header as="a">{username}</Item.Header>
+            <Item.Header>{username}</Item.Header>
             <Item.Meta>
               <span style={{ marginBottom: 10 }}>
                 {moment(createdAt).fromNow()}
@@ -34,31 +39,22 @@ const Post = ({
             <Item.Description>{body}</Item.Description>
             <Item.Extra>
               <div>
-                <Button
-                  compact
-                  color="red"
-                  size="tiny"
-                  icon="heart"
-                  label={{
-                    basic: true,
-                    color: "red",
-                    pointing: "left",
-                    content: likesCount,
-                  }}
-                />
+                <LikeButton user={user} post={{ id, likes, likesCount }} />
                 <Button
                   size="tiny"
                   color="blue"
                   content="Comments"
                   icon="comment"
                   label={{
-                    as: "a",
                     basic: true,
                     color: "blue",
                     pointing: "left",
                     content: "2,048",
                   }}
                 />
+                {user && user.username === username && (
+                  <DeleteButton postId={id} />
+                )}
               </div>
             </Item.Extra>
           </Item.Content>
