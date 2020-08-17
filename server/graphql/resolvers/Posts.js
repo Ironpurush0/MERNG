@@ -21,7 +21,7 @@ module.exports = {
           throw new Error("Post not found.");
         }
       } catch (error) {
-        console.log(error.message);
+        throw new Error(error.message);
       }
     },
   },
