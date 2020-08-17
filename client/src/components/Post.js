@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Avatar } from "@material-ui/core";
 // import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
 // import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
@@ -18,12 +18,15 @@ const Post = ({
   post: { body, createdAt, id, username, likesCount, commentCount, likes },
 }) => {
   const { user } = useContext(AuthContext);
+  console.log(user);
 
   return (
     <div className="ui container">
       <Item.Group relaxed>
-        <Item as={Link} to={`/posts/${id}`}>
+        <Item>
           <Item.Image
+            as={Link}
+            to={`/posts/${id}`}
             src="https://react.semantic-ui.com/images/avatar/large/steve.jpg"
             avatar
             size="tiny"
@@ -31,6 +34,7 @@ const Post = ({
 
           <Item.Content>
             <Item.Header>{username}</Item.Header>
+
             <Item.Meta>
               <span style={{ marginBottom: 10 }}>
                 {moment(createdAt).fromNow()}
@@ -49,7 +53,7 @@ const Post = ({
                     basic: true,
                     color: "blue",
                     pointing: "left",
-                    content: "2,048",
+                    content: commentCount,
                   }}
                 />
                 {user && user.username === username && (
