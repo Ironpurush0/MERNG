@@ -21,9 +21,9 @@ const getToken = (user) => {
 
 module.exports = {
   Query: {
-    async getUser(_, { userId }) {
+    async getUsers() {
       try {
-        const user = await User.findById(userId);
+        const user = await User.find();
         if (user) {
           return user;
         }
