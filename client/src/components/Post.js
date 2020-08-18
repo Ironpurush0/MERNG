@@ -1,16 +1,11 @@
-import React, { useContext, useState } from "react";
-import { Avatar } from "@material-ui/core";
-// import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
-// import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
-// import RepeatIcon from "@material-ui/icons/Repeat";
-// import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-// import PublishIcon from "@material-ui/icons/Publish";
+import React, { useContext } from "react";
 import moment from "moment";
-import { Item, Icon, Label, Button } from "semantic-ui-react";
+import { Item, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth";
 import LikeButton from "./LikeButton";
 import DeleteButton from "./DeleteButton";
+// import { FETCH_USERS } from "../utils/graphql";
 
 import "./Post.css";
 
@@ -18,7 +13,6 @@ const Post = ({
   post: { body, createdAt, id, username, likesCount, commentCount, likes },
 }) => {
   const { user } = useContext(AuthContext);
-  console.log(user);
 
   return (
     <div className="ui container">
@@ -33,7 +27,9 @@ const Post = ({
           />
 
           <Item.Content>
-            <Item.Header>{username}</Item.Header>
+            <Item.Header as={Link} to={`/users`}>
+              {username}
+            </Item.Header>
 
             <Item.Meta>
               <span style={{ marginBottom: 10 }}>
